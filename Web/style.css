@@ -157,6 +157,8 @@ body {
 #slide_bg {
     width: 100%;
     height: 100vh;
+    padding-left: 10%;
+    padding-right: 10%;
     background-position: center top;
     background-size: cover;
     background-repeat: no-repeat;
@@ -455,6 +457,22 @@ body {
 	.myP {
 		padding:2%;
 	}
+  .myHeader{
+    text-align: center;
+  }
+}
+@media (min-width:701px){
+  .myHeader{
+    padding-left: 15%;
+  }
 }
 * {box-sizing:border-box}
-
+.myHeader{
+  font-size: 3rem;
+}
+.myul{
+  text-align: justify;
+	padding-left:17%;
+	padding-right:17%;
+	font-size: 20px;
+}
