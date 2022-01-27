@@ -1,50 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="navbar.css">
-    <title>DEP</title>
-    <nav class="nav">
-        <div class="container">
-            <div class="logo">
-                <a href="#">YourLogo</a>
-            </div>
-            <div class="main_list" id="mainListDiv">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Tracker</a></li>
-                    <li><a href="#">Classifier</a></li>
-                    <li><a href="#">Community</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-            </div>
-            <div class="media_button">
-                <button class="main_media_button" id="mediaButton">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </nav>
-  </head>
-  <body>
-    
+<head>
+  <meta charset="UTF-8">
+  <title>DEP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="images/Screenshot_1.png" type="image/x-icon">
+</head>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+<body>
+  <!-- partial:index.partial.html -->
+  <nav class="nav navbar-expand-lg fixed-top">
+    <div class="container">
+      <div class="logo">
+        <a href="#"><img src="images/Screenshot_1.png"></a>
+      </div>
+      <div id="mainListDiv" class="main_list">
+        <ul class="navlinks">
+          <li><a href="#">Tracker</a></li>
+          <li><a href="#">Classifier</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+      <span class="navTrigger">
+        <i></i>
+        <i></i>
+        <i></i>
+      </span>
+    </div>
+  </nav>
+  <div id="slide_bg">
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </div>
+  <div style="height: 1000px">
+    <!-- just to make scrolling effect possible -->
+    <h1 class="myHeader">Zoonotic Diseases</h1>
+    <p class="myP">Animals provide many benefits to people. Many people interact with animals in their daily lives, both at home and away from home.
+      Animals provide food, fiber, livelihoods, travel, sport, companionship, and education for people across the globe.
+      Millions of households in the United States have one or more pets.
+      We might come into contact with animals in either urban or rural settings, during travel,
+      while visiting animal exhibits, or while enjoying outdoor activities.</p>
+    <p class="myP">However, animals can sometimes carry harmful germs that can spread to people and cause illness – these are known as zoonotic diseases or zoonoses.
+      Zoonotic diseases are caused by harmful germs like viruses, bacterial, parasites, and fungi.
+      These germs can cause many different types of illnesses in people and animals, ranging from mild to serious illness and even death.
+      Animals can sometimes appear healthy even when they are carrying germs that can make people sick, depending on the zoonotic disease.</p>
+    <h2 class="myHeader">Who is at a higher risk of serious illness from zoonotic diseases?</h2>
+    <p class="myP">Anyone can get sick from a zoonotic disease, including healthy people.
+      However, some people are more at risk than others and should take steps to protect themselves or family members.
+      These people are more likely than others to get really sick, and even die, from infection with certain diseases.
+      These groups of people include:</p>
+    <ul class="myul">
+      <li>Children younger than 5</li>
+      <li>Adults older than 65</li>
+      <li>People with weakened immune systems</li>
+      <li>Pregnant women</li>
+    </ul>
+    <h2 class="myHeader">What can you do to protect yourself and your family from zoonotic diseases?</h2>
+    <p class="myP">People can come in contact with animals in many places.
+      This includes at home and away from home, in places like petting zoos, fairs, schools, stores, and parks.
+      Insects, like mosquitoes and fleas, and ticks bite people and animals day and night.
+      Thankfully, there are things you can do to protect yourself and your family from zoonotic diseases.</p>
+      <ul class="myul">
+        <li>Keep hands clean.
+          Washing your hands right after being around animals, even if you didn’t touch any animals,
+          is one of the most important steps you can take to avoid getting sick and spreading germs to others.</li>
+          <li>Know the simple things you can do to stay safe around your pets.</li>
+          <li>Prevent bites from mosquitoes, ticks, and fleas.</li>
+          <li>Learn more about ways to handle food safely—whether it’s for yourself or your family, your pet, or other animals.</li>
+          <li>Be aware of zoonotic diseases both at home,
+            away from home (such as at petting zoos or other animal exhibits),
+            in childcare settings or schools and when you travel.</li>
+          <li>Avoid bites and scratches from animals.</li>
+      </ul>
+  </div>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-  </body>
+
+  <!-- Jquery needed -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="script.js"></script>
+
+</body>
+
 </html>
