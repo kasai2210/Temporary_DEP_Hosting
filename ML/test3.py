@@ -35,9 +35,9 @@ def count(dir, counter=0):
     return dir + " : " + str(counter) + "files"
 print('total images for training :', count(train_dir))
 print('total images for test :', count(test_dir))
-IMAGE_SHAPE = (224, 224)
+IMAGE_SHAPE = (64, 64)
 
-BATCH_SIZE = 64
+BATCH_SIZE = 32
 
 validation_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
 validation_generator = validation_datagen.flow_from_directory(
@@ -70,6 +70,7 @@ train_generator = train_datagen.flow_from_directory(
     batch_size=BATCH_SIZE)
 classes = {j: i for i, j in train_generator.class_indices.items()}
 print('Number of classes:',len(classes))
+'''
 model = tf.keras.Sequential([
   hub.KerasLayer("https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4", 
                  output_shape=[1280],
@@ -79,14 +80,21 @@ model = tf.keras.Sequential([
   tf.keras.layers.Dropout(rate=0.2),
   tf.keras.layers.Dense(train_generator.num_classes, activation='softmax')
 ])
+'''
+model = tf.keras.models.Sequential()
+model.add(tf.keras.layers.Conv2D(128,(3,3),input_shape = (64,64,3), activation = 'sigmoid'))
+model.add(tf.keras.layers.Flatten())
+model.add(tf.keras.layers.Dense(train_generator.num_classes, activation='softmax'))
+                         
+                         
 
-LEARNING_RATE = 0.001
+LEARNING_RATE = 0.003
 
 model.compile(
    optimizer=tf.keras.optimizers.Adam(lr=LEARNING_RATE), 
    loss='categorical_crossentropy',
    metrics=['accuracy'])
-EPOCHS=1
+EPOCHS=15
 
 history = model.fit(
         train_generator,
