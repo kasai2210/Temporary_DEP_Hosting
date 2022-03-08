@@ -1,12 +1,21 @@
 <%- include('partials/header'); %>
 <h1>Home</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Vitae nunc sed velit dignissim sodales ut eu sem. Sed tempus urna et pharetra pharetra. Purus sit amet luctus venenatis lectus. Venenatis urna cursus eget nunc scelerisque viverra mauris in aliquam. Pretium lectus quam id leo in vitae turpis massa sed. Eu volutpat odio facilisis mauris sit amet massa. Platea dictumst quisque sagittis purus sit amet volutpat. Pellentesque sit amet porttitor eget. Quis viverra nibh cras pulvinar mattis. Ut consequat semper viverra nam libero justo laoreet. Morbi tempus iaculis urna id volutpat. Felis eget nunc lobortis mattis aliquam faucibus. Sit amet cursus sit amet dictum sit amet. Tortor posuere ac ut consequat semper viverra. Non nisi est sit amet facilisis magna.</p>
-<% for(var i=0;i<posts.length;i++){ %>
-<h1><%= posts[i].title; %></h1>
-<p><%= posts[i].content.substring(0,100) + "..."; %> <a href="/community/posts/<%= posts[i].title; %>">Read More</a></p>
-<% }; %>
+<p> <%= startingContent %> </p>
+
+    <%  posts.forEach(function(post){ %>
+
+      <h1><%=post.title%></h1>
+      <p>
+      <%=post.content.substring(0, 100) + " ..."%>
+      <a href="/community/posts/<%=post._id%>">Read More</a>
+      </p>
+
+
+      <% }) %>
 
 <div style="margin-top: 20px;">
     <a href="/community/compose" class="btn btn-primary btn-lg active" role="button" aria-disabled="true">Create Article</a>
 </div>
+
+
 <%- include('partials/footer'); %>
