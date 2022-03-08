@@ -13,3 +13,10 @@ $('.navTrigger').click(function () {
   $("#mainListDiv").toggleClass("show_list");
   $("#mainListDiv").fadeIn();
 });
+
+$('.navTrigger').click(function () {
+  $(this).toggleClass('active');
+  console.log("Clicked menu");
+  $("#mainListDivComm").toggleClass("show_list");
+  $("#mainListDivComm").fadeIn();
+});

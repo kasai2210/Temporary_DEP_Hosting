@@ -41,7 +41,7 @@ app.get("/community/contact",function(req,res){
 app.get("/community/compose",function(req,res){
   res.render("compose");
 });
-app.post("/community/compose", function(req,res){
+app.post("/community/c0ompose", function(req,res){
   const post = {
     title: req.body.postTitle,
     content: req.body.postBody
