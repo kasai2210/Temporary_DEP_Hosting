@@ -52,13 +52,8 @@ app.get("/community/contact",function(req,res){
 app.get("/community/compose",function(req,res){
   res.render("compose");
 });
-<<<<<<< HEAD
-app.post("/community/c0ompose", function(req,res){
-  const post = {
-=======
 app.post("/community/compose", function(req,res){
   const post = new Post({
->>>>>>> 73d6dc7a3654155bebd3e42e05ed067fb246aed1
     title: req.body.postTitle,
     content: req.body.postBody
 });
