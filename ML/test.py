@@ -27,6 +27,7 @@ import time
 import os
 from os.path import exists
 import pickle
+from keras.models import model_from_yaml
 
 def count(dir, counter=0):
     "returns number of files in dir and subdirs"
@@ -95,7 +96,7 @@ model.compile(
    optimizer=tf.keras.optimizers.Adam(lr=LEARNING_RATE), 
    loss='categorical_crossentropy',
    metrics=['accuracy'])
-EPOCHS=1
+EPOCHS=5
 
 history = model.fit(
         train_generator,
@@ -130,8 +131,14 @@ plt.xlabel("Training Steps")
 plt.show()
 class_names = ["Class " + classes[i] for i in range(len(classes))]
 
-model_save_file = 'mobilenet_model.sav'
-pickle.dump(model, open(model_save_file, 'wb'))
+model_save_file = 'mobilenet_model.yaml'
+# serialize model to YAML
+model_yaml = model.to_yaml()
+with open(model_save_file, "w") as yaml_file:
+    yaml_file.write(model_yaml)
+# serialize weights to HDF5
+model.save_weights("mobilenet_model.h5")
+print("Saved model to disk")
 
 def load_image(filename):
     img = cv2.imread(os.path.join(test_dir, filename))
