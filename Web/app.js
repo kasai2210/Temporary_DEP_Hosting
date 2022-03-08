@@ -2,6 +2,8 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+
+const mongoose = require("mongoose");
 const ejs = require("ejs");
 const _ = require("lodash");
 const res = require("express/lib/response");
@@ -17,17 +19,26 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-var posts=[];
+mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true});
+
+const postSchema = {
+  title: String,
+  content: String
+};
+
+const Post = mongoose.model("Post", postSchema);
+
 app.get('/', function(req, res){
   res.sendFile(__dirname+"/index.html");
 })
 
 app.get('/community',function(req,res){
-  res.render("home", {
-    startingContent: homeStartingContent,
-    posts:posts
+  Post.find({}, function(err, posts){
+    res.render("home", {
+      startingContent: homeStartingContent,
+      posts: posts
+      });
   });
-
 });
 
 app.get("/community/about",function(req,res){
@@ -41,29 +52,36 @@ app.get("/community/contact",function(req,res){
 app.get("/community/compose",function(req,res){
   res.render("compose");
 });
+<<<<<<< HEAD
 app.post("/community/c0ompose", function(req,res){
   const post = {
+=======
+app.post("/community/compose", function(req,res){
+  const post = new Post({
+>>>>>>> 73d6dc7a3654155bebd3e42e05ed067fb246aed1
     title: req.body.postTitle,
     content: req.body.postBody
-  };
-posts.push(post);
-  res.redirect("/community")
+});
+post.save(function(err){
+    if (!err){
+        res.redirect("/community");
+    }
+  });
 });
 
-app.get("/community/posts/:postName",function(req,res){
-  const requestedTitle = _.lowerCase(req.params.postName) ;
+app.get("/community/posts/:postId", function(req, res){
 
+const requestedPostId = req.params.postId;
 
-  posts.forEach(function(post){
-    const storedTitle = _.lowerCase(post.title);
-
-    if(storedTitle === requestedTitle)
+  Post.findOne({_id: requestedPostId}, function(err, post){
     res.render("post", {
       titley: post.title,
       paragraph: post.content
     });
   });
-})
+
+});
+
 
 app.listen(process.env.PORT||3000, function() {
   console.log("Server started on port 3000");

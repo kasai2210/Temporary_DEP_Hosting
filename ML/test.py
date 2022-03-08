@@ -26,6 +26,8 @@ test_dir = os.path.join(data_dir, 'test')
 import time
 import os
 from os.path import exists
+import pickle
+from keras.models import model_from_yaml
 
 def count(dir, counter=0):
     "returns number of files in dir and subdirs"
@@ -35,7 +37,7 @@ def count(dir, counter=0):
     return dir + " : " + str(counter) + "files"
 print('total images for training :', count(train_dir))
 print('total images for test :', count(test_dir))
-IMAGE_SHAPE = (64, 64)
+IMAGE_SHAPE = (224, 224)
 
 BATCH_SIZE = 32
 
@@ -70,7 +72,7 @@ train_generator = train_datagen.flow_from_directory(
     batch_size=BATCH_SIZE)
 classes = {j: i for i, j in train_generator.class_indices.items()}
 print('Number of classes:',len(classes))
-'''
+
 model = tf.keras.Sequential([
   hub.KerasLayer("https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4", 
                  output_shape=[1280],
@@ -85,7 +87,7 @@ model = tf.keras.models.Sequential()
 model.add(tf.keras.layers.Conv2D(128,(3,3),input_shape = (64,64,3), activation = 'sigmoid'))
 model.add(tf.keras.layers.Flatten())
 model.add(tf.keras.layers.Dense(train_generator.num_classes, activation='softmax'))
-                         
+'''                         
                          
 
 LEARNING_RATE = 0.003
@@ -94,7 +96,7 @@ model.compile(
    optimizer=tf.keras.optimizers.Adam(lr=LEARNING_RATE), 
    loss='categorical_crossentropy',
    metrics=['accuracy'])
-EPOCHS=15
+EPOCHS=5
 
 history = model.fit(
         train_generator,
@@ -128,6 +130,16 @@ plt.ylabel("Loss (training and validation)")
 plt.xlabel("Training Steps")
 plt.show()
 class_names = ["Class " + classes[i] for i in range(len(classes))]
+
+model_save_file = 'mobilenet_model.yaml'
+# serialize model to YAML
+model_yaml = model.to_yaml()
+with open(model_save_file, "w") as yaml_file:
+    yaml_file.write(model_yaml)
+# serialize weights to HDF5
+model.save_weights("mobilenet_model.h5")
+print("Saved model to disk")
+
 def load_image(filename):
     img = cv2.imread(os.path.join(test_dir, filename))
     img = cv2.resize(img, (IMAGE_SHAPE[0], IMAGE_SHAPE[1]) )
