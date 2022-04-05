@@ -1,0 +1,19 @@
+<%- include('partials/headerStart') %>
+
+<div class="container">
+  <div class="container-wrapper">
+
+      <h3 class="login-text"><i class="bi bi-person-circle ac-logo"></i>Register</h3>
+  
+      <form action="/register" method="post">
+          <div class="item"><input class="input" type="text" placeholder="username" name="username"></div> 
+          <div class="item"><input class="input" type="password" placeholder="password" name="password"> </div>
+          <!-- <span class="remember"> <a href="#">Forgot Password?</a> </span> -->
+
+          <div class="item submit"><button type="submit">Submit</button></div>
+      </form>
+  </div>
+
+</div>
+
+<%- include('partials/footer') %>

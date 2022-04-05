@@ -1,8 +1,10 @@
 //jshint esversion:6
-
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 
+let encrypt=require("mongoose-encryption");
+let md5=require("md5");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 const _ = require("lodash");
@@ -26,7 +28,60 @@ const postSchema = {
 
 const Post = mongoose.model("Post", postSchema);
 
-app.get('/', function(req, res){
+let userSchema=new mongoose.Schema({
+  email: String, 
+  password: String
+});
+
+let User=new mongoose.model("user", userSchema);
+
+app.get("/", function(req, res){
+  res.render("login");
+})
+
+app.get("/register", function(req, res){
+  res.render("register");
+})
+
+app.post("/", function(req, res){
+  const name=req.body.username;
+  const pass=md5(req.body.password);  
+  User.findOne({email:name}, function(err, foundUser){
+      if(err) console.log(err);
+      else{
+          if(foundUser){
+              if(foundUser.password===pass){
+                  res.redirect("home");
+              }
+              else{
+                console.log(foundUser.password);
+                console.log(pass);
+                res.render("login");
+              }
+              
+          }
+          else
+          res.render("login");
+      }
+  });
+});
+
+app.post("/register", function(req, res){
+  let newUser=new User({
+      email:req.body.username,
+      password:md5(req.body.password)
+  })
+  newUser.save(function(err){
+      if(err){
+          console.log(err);
+      }
+      else {
+          res.render("login");
+      }
+  })
+})
+
+app.get('/home', function(req, res){
   res.sendFile(__dirname+"/index.html");
 })
 
