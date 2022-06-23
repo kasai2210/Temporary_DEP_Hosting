@@ -1,0 +1,11 @@
+<%- include('partials/header'); %>
+
+<h1><%= titley %></h1>
+<form class="" action="<%=url%>" method="post">
+    <textarea class="form-control" name="postBody" rows="5" cols="30"><%=paragraph%></textarea>
+    <div style="margin-top: 20px;">
+        <button class = "btn btn-primary" type="submit" name="button">Save</button>
+    </div>
+</form>
+
+<%- include('partials/footer'); %>

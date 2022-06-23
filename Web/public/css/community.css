@@ -9,6 +9,10 @@ body {
     font-size: 15px;
 }
 
+#postText{
+    white-space: pre-wrap;
+}
+
 #main_articles{
     margin-top: 100px;
 }
@@ -87,7 +91,11 @@ nav.shift ul li a:hover:after {
     width: 90px;
     height: 105px;
     padding-top: 1rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
 }
+
 
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
 	color: #fff;

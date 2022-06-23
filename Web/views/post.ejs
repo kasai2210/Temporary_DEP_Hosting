@@ -1,6 +1,11 @@
 <%- include('partials/header'); %>
 
-<h1><%= titley %></h1>
-<p> <%= paragraph %> </p>
+<h1><%= titley %> by <%=username%></h1>
+<p id="postText" name="postBody"><%= paragraph %> </p>
+<div style="margin-top: 20px;">
+    <form action="<%=url%>" >
+        <button class = "btn btn-primary" type="submit" name="button">Edit</button>
+    </form>
+</div>
 
 <%- include('partials/footer'); %>
